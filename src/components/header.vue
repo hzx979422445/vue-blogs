@@ -21,7 +21,7 @@
               </span>
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item command="个人资料" v-text="userInfo.userName"></el-dropdown-item>
-            <el-dropdown-item command="参考资料">参考资料</el-dropdown-item>
+            <el-dropdown-item command="我的收藏">我的收藏</el-dropdown-item>
             <el-dropdown-item command="关于">关于</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -132,6 +132,9 @@ export default {
       this.setUpDialogName = command
       if (command === '个人资料') {
         this.form = JSON.parse(localStorage.getItem('userInfo'))
+      } else {
+        this.$message.success('敬请期待')
+        return
       }
       this.dialogFormVisible = true
     },

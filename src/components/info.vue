@@ -33,8 +33,15 @@
                </span>
              </div>
           </div>
-          <div class="topicInfoHeaderRight" v-if="userInfo.accountNumer">
-             加入收藏
+          <div v-if="isCollect">
+            <div class="topicInfoHeaderRight" v-if="userInfo.accountNumer" @click="collect(true)">
+             取消收藏
+            </div>
+          </div>
+          <div v-else>
+            <div class="topicInfoHeaderRight" v-if="userInfo.accountNumer" @click="collect(false)">
+              加入收藏
+            </div>
           </div>
         </div>
         <div class="topicInfoContent">
@@ -137,7 +144,8 @@ export default {
       },
       editorContent: '',
       editorContentTwo: '',
-      reply_user: {}
+      reply_user: {},
+      isCollect: false
     }
   },
   created: function () {
@@ -148,6 +156,12 @@ export default {
     }
     if (localStorage.getItem('userInfo') != null) {
       this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    }
+    if (this.userInfo.collect) {
+      const collectIndex = this.userInfo.collect.indexOf(this.topicId)
+      if (collectIndex > -1) {
+        this.isCollect = true
+      }
     }
     if (this.topicId !== '') {
       Promise.all([
@@ -212,6 +226,35 @@ export default {
       this.topicReply[index].isShow = !isShow
       this.reply_user = item.comment_user
       this.editorContentTwo = ''
+    },
+    collect (flag) {
+      if (flag) {
+        if (this.userInfo.collect) {
+          const collectIndex = this.userInfo.collect.indexOf(this.topicId)
+          if (collectIndex > -1) {
+            this.userInfo.collect.splice(collectIndex, 1)
+          }
+        }
+      } else {
+        if (this.userInfo.collect) {
+          this.userInfo.collect.push(this.topicId)
+        } else {
+          this.userInfo.collect = []
+          this.userInfo.collect.push(this.topicId)
+        }
+      }
+      this.$axios.put('/hzx/v1/user/' + this.userInfo['_id'], this.userInfo).then(res => {
+        this.userInfo = res.message
+        if (this.userInfo.collect) {
+          const collectIndex = this.userInfo.collect.indexOf(this.topicId)
+          if (collectIndex > -1) {
+            this.isCollect = true
+          } else {
+            this.isCollect = false
+          }
+        }
+        localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
+      })
     }
   },
   beforeDestroy: function () {
