@@ -10,8 +10,7 @@ export default {
     /// //////////////////////////////////////////////////////////////////////////////////第一部分-实例方法////////////////////////////////////////////////////////////////////////////////
     /**
      * 方法作用:获取菜单对应的列表url路径
-     * @param key 需要获取数组对象某个值所需要的键(例:"userlist")
-     * @param arr 需要获取的数组对象(非必填)
+     * @param uploadTime 当前日期
      * @returns {String}
      */
     Vue.prototype.timeDifference = function (uploadTime) {
@@ -40,7 +39,10 @@ export default {
             return minutes + '分钟前'
           } else {
             const leave3 = leave2 % (60 * 1000)
-            const seconds = Math.round(leave3 / 1000)
+            let seconds = Math.round(leave3 / 1000)
+            if (seconds === 0) {
+              seconds = 1
+            }
             return seconds + '秒前'
           }
         }
@@ -58,7 +60,7 @@ export default {
      */
 
     /**
-     * 根据权限按钮的id判断是否有该按钮权限
+     * 解析mardown语法格式
      */
     Vue.directive('highlight', (el) => {
       let blocks = el.querySelectorAll('pre code')
