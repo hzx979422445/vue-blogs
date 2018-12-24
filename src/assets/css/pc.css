@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti !important;
+  font-size: 14px;
+  background: #e1e1e1;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+a{
+  text-underline: none;
+  text-decoration:none;
+}
+.header {
+  width: 100%;
+  height: 56px;
+  line-height: 56px;
+  background: #1c6132;
+}
+.headerWrap{
+  width: 1190px;
+  height: 100%;
+  margin: 0 auto;
+}
+.headerWrapLeft{
+  float: left;
+}
+.headerWrapLeft > div{
+  float: left;
+}
+.headerWrapLeft > div >span{
+  margin-right: 50px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+}
+.logo{
+  height: 36px;
+  background: #35495e;
+  line-height: 40px;
+  margin-top: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.icon-bokeblogger3{
+  font-size: 45px;
+  color: #41b883;
+}
+.headerInput{
+  width: 250px;
+  height: 26px;
+  border-radius: 13px;
+  background: #4f9639;
+  margin-top: 15px;
+  color: #333333;
+
+}
+.headerInput:hover{
+  background: #fff;
+}
+.headerInputTwo{
+  background: #fff;
+}
+.headerInput .icon-sousuo{
+  float: left;
+  margin-left: 10px;
+  margin-right: 5px;
+  line-height: 20px;
+}
+.headerInput input{
+  float: left;
+  width: 200px;
+  height: 26px;
+  background: transparent;
+  cursor: pointer;
+}
+.headerWrapRight{
+  float: right;
+}
+.icon-shezhi,.icon-denglu,.icon-zhuce,.icon-h,.icon-fabu{
+  font-size: 25px;
+  color: #dbdbdb;
+  cursor: pointer;
+  margin-left: 30px;
+}
+.icon-shezhi:hover,.icon-denglu:hover,.icon-zhuce:hover,.icon-h:hover,.icon-fabu:hover{
+  color: #41b883;
+}
+.middle{
+  width: 1190px;
+  min-height: 400px;
+  position: relative;
+  margin: 15px auto;
+}
+.el-upload--picture-card{
+  border: none;
+}
+.avatar {
+  width: 148px;
+  height: 148px;
+  display: block;
+}
