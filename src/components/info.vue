@@ -196,10 +196,10 @@ export default {
         }
       }
       this.$axios.post('/hzx/v1/comment/add', obj).then((res) => {
-        res.forEach((item) => {
+        this.topicReply.push(res)
+        this.topicReply.forEach((item) => {
           item.isShow = false
         })
-        this.topicReply = res
         this.editorContent = ''
         this.editorContentTwo = ''
       })
