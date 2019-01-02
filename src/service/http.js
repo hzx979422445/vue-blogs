@@ -90,11 +90,9 @@ axiosIns.interceptors.request.use(
  */
 axiosIns.interceptors.response.use(
   (response) => {
-    if (response.headers !== undefined) {
-      let pageCount = response.headers['page-count']
-      if (pageCount !== undefined) {
-        sessionStorage.setItem('pageCount', pageCount)
-      }
+    let curPage = response.data.body.curPage
+    if (curPage) {
+      sessionStorage.setItem('curPage', curPage)
     }
     tryHideFullScreenLoading()
     let code = response.data.code

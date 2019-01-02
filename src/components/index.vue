@@ -76,6 +76,9 @@ export default {
     if (localStorage.getItem('userInfo') != null) {
       this.userInfo = JSON.parse(localStorage.getItem('userInfo'))
     }
+    if(sessionStorage.getItem('curPage') != null){
+      this.currentPage = Number(sessionStorage.getItem('curPage'))
+    }
     this.$axios.get('/hzx/v1/dictionary/' + '10').then((response) => {
       response.message.forEach((currentValue, index) => {
         this.dictionarys.push({
