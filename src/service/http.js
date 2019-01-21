@@ -73,9 +73,9 @@ axiosIns.interceptors.request.use(
       config.headers['Content-Type'] = config['Content-Type']
     }
     if (config['formData']) {
-      qs.stringify(config.data)
+      config.data = qs.stringify(config.data)
     } else {
-      JSON.stringify(config.data)
+      config.data = JSON.stringify(config.data)
     }
     showFullScreenLoading()
     return config
